@@ -13,7 +13,7 @@ public class HrDataBaseContext : DbContext
 
     public DbSet<LeaveType> LeaveTypes { get; set; }
     public DbSet<LeaveAllocation> LeaveAllocations { get; set; }
-    public DbSet<LeaveRequest> LeaveRequestd { get; set; }
+    public DbSet<LeaveRequest> LeaveRequests { get; set; }
 
     override protected void OnModelCreating(ModelBuilder modelBuilder)
     {
