@@ -24,8 +24,9 @@ namespace HR.LeaveManagement.Application.Features.LeaveType.Queries.GetAllLeaveT
             var leaveTypes = await _leaveTypeRepository.GetAsync();
             // Mapper 
             var data = _mapper.Map<List<LeaveTypeDTO>>(leaveTypes);
-            // Lance the DTO 
+            // Log the info
             _logger.LogInformation("Leave type were retrieved successfully");
+            // Lance the DTO 
             return data;
         }
     }
