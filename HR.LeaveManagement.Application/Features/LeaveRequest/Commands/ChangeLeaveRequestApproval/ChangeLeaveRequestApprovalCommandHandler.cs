@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using HR.LeaveManagement.Application.Contracts.Email;
 using HR.LeaveManagement.Application.Contracts.Persistence;
 using HR.LeaveManagement.Application.Exceptions;
@@ -40,14 +40,21 @@ public class ChangeLeaveRequestApprovalCommandHandler : IRequestHandler<ChangeLe
         // if request is approved, get and update the employee details 
 
         // send email
-        var email = new EmailMessage
+        try
         {
-            To = string.Empty,
-            Body = $"Your leave request has been Approved",
-            Subject = "Leave request Approved Confirmation"
-        };
+            var email = new EmailMessage
+            {
+                To = "mohamedellithy765@gmail.com", 
+                Body = $"Your leave request has been Approved",
+                Subject = "Leave request Approved Confirmation"
+            };
 
-        await _emailSender.SendEmail(email);
+            await _emailSender.SendEmailAsync(email);
+        }
+        catch (Exception)
+        {
+            // Log or handle email failure without blocking the approval flow
+        }
 
         return Unit.Value;
     }

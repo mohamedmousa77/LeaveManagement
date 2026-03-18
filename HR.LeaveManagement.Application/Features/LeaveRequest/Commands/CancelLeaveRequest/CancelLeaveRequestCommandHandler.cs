@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using HR.LeaveManagement.Application.Contracts.Email;
 using HR.LeaveManagement.Application.Contracts.Persistence;
 using HR.LeaveManagement.Application.Exceptions;
@@ -33,14 +33,22 @@ namespace HR.LeaveManagement.Application.Features.LeaveRequest.Commands.CancelLe
             leaveRequest.Cancelled = true;
             
 
-            var email = new EmailMessage
+            // Send cancellation email
+            try
             {
-                To = string.Empty,
-                Body = $"Your leave request has been cancelled successfully",
-                Subject = "Leave Request Cancelled"
-            };
+                var email = new EmailMessage
+                {
+                    To = "mohamedellithy765@gmail.com",
+                    Body = $"Your leave request has been cancelled successfully",
+                    Subject = "Leave Request Cancelled"
+                };
 
-            await _emailSender.SendEmail(email);
+                await _emailSender.SendEmailAsync(email);
+            }
+            catch (Exception)
+            {
+                // Log or handle email failure without blocking the cancellation flow
+            }
 
             return Unit.Value;
         }

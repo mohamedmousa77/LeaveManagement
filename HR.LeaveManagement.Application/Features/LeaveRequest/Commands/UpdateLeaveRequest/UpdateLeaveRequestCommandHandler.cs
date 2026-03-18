@@ -57,11 +57,11 @@ public class UpdateLeaveRequestCommandHandler : IRequestHandler<UpdateLeaveReque
         {
             var email = new EmailMessage
             {
-                To = string.Empty,
+                To = "mohamedellithy765@gmail.com",
                 Body = $"You leave request for {request.StartDate:D} to {request.EndDate} has been updated successfully",
                 Subject = "Leave request update"
             };
-            await _emailSender.SendEmail(email);
+            await _emailSender.SendEmailAsync(email);
 
         }catch (Exception ex)        
         {

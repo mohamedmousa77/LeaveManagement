@@ -45,16 +45,24 @@ public class CreateLeaveRequestCommandHandler : IRequestHandler<CreateLeaveReque
         var leaveRequest = _mapper.Map<Domain.LeaveRequest>(request);
 
         await _leaveRequestRepository.CreateAsync(leaveRequest);
-
+        
+        // Send confirmation email.
+        try
+        {
+           
         var email = new EmailMessage
         {
-            To = string.Empty,
+            To = "mohamedellithy765@gmail.com",
             Body = $"You leave request for {request.StartDate:D} to {request.EndDate} has been created successfully",
             Subject = "Leave request confirmation"
         };
+            await _emailSender.SendEmailAsync(email);
 
-        await _emailSender.SendEmail(email);
-
+        }catch (Exception ex)        
+        {
+            _logger.LogWarning($"Error: {ex}");
+        }
+        
         return leaveRequest.Id;
     }
 }
