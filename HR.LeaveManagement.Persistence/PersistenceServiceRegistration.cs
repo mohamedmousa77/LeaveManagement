@@ -1,4 +1,4 @@
-﻿using HR.LeaveManagement.Application.Contracts.Persistence;
+using HR.LeaveManagement.Application.Contracts.Persistence;
 using HR.LeaveManagement.Persistence.DatabaseContext;
 using HR.LeaveManagement.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -13,7 +13,12 @@ public static class PersistenceServiceRegistration
     {
         services.AddDbContext<HrDataBaseContext>(options =>
         {
-            options.UseSqlServer(configuration.GetConnectionString("HrDatabaseConnectionString"));
+        options.UseSqlServer(
+                configuration.GetConnectionString("HrDatabaseConnectionString"),
+                b => b.EnableRetryOnFailure(
+                    maxRetryCount: 5,
+                    maxRetryDelay: TimeSpan.FromSeconds(10),
+                    errorNumbersToAdd: null));
         });
 
         services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
