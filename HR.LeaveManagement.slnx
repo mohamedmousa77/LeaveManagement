@@ -14,5 +14,6 @@
   <Folder Name="/src/UI/" />
   <Folder Name="/Test/">
     <Project Path="HR.LeaveManagement.Application.UnitTests/HR.LeaveManagement.Application.UnitTests.csproj" Id="dd310a15-a74b-47ba-a97f-1b821165d163" />
+    <Project Path="HR.LeaveManagement.Persistence.IntegrationTest/HR.LeaveManagement.Persistence.IntegrationTest.csproj" Id="55e3709b-264f-4c22-a16a-380cda3982f6" />
   </Folder>
 </Solution>
