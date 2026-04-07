@@ -6,7 +6,7 @@
     <button @onclick="CreateLeaveType" class="btn btn-success">Add Leave Type</button>
 </div>
 
-@if (string.IsNullOrEmpty(Message))
+@if (!string.IsNullOrEmpty(Message))
 {
     <div class="alert alert-danger">
         @Message

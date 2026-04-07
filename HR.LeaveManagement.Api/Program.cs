@@ -15,8 +15,11 @@ builder.Services.AddControllers();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("all", 
-        builder => builder.AllowCredentials().AllowAnyMethod().AllowAnyHeader());
+    options.AddPolicy("all", builder => 
+    builder.WithOrigins("https://localhost:7161")
+    .AllowCredentials()
+    .AllowAnyMethod()
+    .AllowAnyHeader());
 });
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -36,8 +39,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
 app.UseCors("all");
+
+app.UseHttpsRedirection();
+
 app.UseAuthorization();
 
 app.MapControllers();
