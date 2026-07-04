@@ -1,16 +1,18 @@
-﻿using System.ComponentModel.Design;
+﻿using Blazored.LocalStorage;
+using System.ComponentModel.Design;
 
 namespace HR.LeaveManagement.BlazorUI.Services.Base
 {
     public class BaseHttpService
     {
         protected IClient _client;
+        protected readonly ILocalStorageService _localStorageService;
 
-        public BaseHttpService(IClient client)
+        public BaseHttpService(ILocalStorageService localStorageService, IClient client)
         {
+            this._localStorageService = localStorageService;
             _client = client;
         }
-
         protected Response<Guid> ConvertApiException<Guid>(ApiException exception)
         {
             if(exception.StatusCode == 404)

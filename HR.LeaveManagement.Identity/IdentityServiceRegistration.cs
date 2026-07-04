@@ -15,7 +15,7 @@ namespace HR.LeaveManagement.Identity;
 
 public static class IdentityServiceRegistration
 {
-    public static IServiceCollection ConfigureIdentityServices
+    public static IServiceCollection AddIdentityServices
         (this IServiceCollection services, IConfiguration configuration)
     {
         services.Configure<JwtSetting>(configuration.GetSection("JwtSetting"));
