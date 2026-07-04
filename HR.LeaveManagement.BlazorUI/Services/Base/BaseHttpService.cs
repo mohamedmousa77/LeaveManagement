@@ -40,5 +40,16 @@ namespace HR.LeaveManagement.BlazorUI.Services.Base
                 };
             }
         }
+
+        protected async Task AddBearerToken()
+        {
+            if (await _localStorageService.ContainKeyAsync("token"))
+            {
+                var savedToken = await _localStorageService.GetItemAsync<string>("token");
+
+                _client.HttpClient.DefaultRequestHeaders.Authorization = 
+                    new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", savedToken);
+            }
+        }
     }
 }
