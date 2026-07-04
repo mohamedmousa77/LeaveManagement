@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Blazored.LocalStorage;
 using HR.LeaveManagement.BlazorUI.Contracts;
 using HR.LeaveManagement.BlazorUI.Models.LeaveTypes;
 using HR.LeaveManagement.BlazorUI.Services.Base;
@@ -9,7 +10,9 @@ namespace HR.LeaveManagement.BlazorUI.Services
     {
         private readonly IMapper _mapper;
 
-        public LeaveTypeService(IClient client, IMapper mapper) : base(client)
+        public LeaveTypeService
+            (ILocalStorageService localStorageService, IClient client, IMapper mapper) 
+            : base(localStorageService, client)
         {
             this._mapper = mapper;
         }
