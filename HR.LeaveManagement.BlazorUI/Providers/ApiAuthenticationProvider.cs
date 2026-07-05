@@ -29,11 +29,26 @@ public class ApiAuthenticationProvider : AuthenticationStateProvider
         {
             return new AuthenticationState(user);
         }
-
         var savedToken = await _localStorage.GetItemAsync<string>("token");
-        var tokenContent = _jwtSecurityTokenHandler.ReadJwtToken(savedToken);
+        if (string.IsNullOrWhiteSpace(savedToken))
+        {
+            await _localStorage.RemoveItemAsync("token");
+            return new AuthenticationState(user);
+        }
 
-        if(tokenContent.ValidTo < DateTime.UtcNow)
+        JwtSecurityToken tokenContent;
+        try
+        {
+            tokenContent = _jwtSecurityTokenHandler.ReadJwtToken(savedToken);
+        }
+        catch
+        {
+            // Malformed token: remove it and return anonymous
+            await _localStorage.RemoveItemAsync("token");
+            return new AuthenticationState(user);
+        }
+
+        if (tokenContent.ValidTo < DateTime.UtcNow)
         {
             await _localStorage.RemoveItemAsync("token");
             return new AuthenticationState(user);
@@ -68,9 +83,23 @@ public class ApiAuthenticationProvider : AuthenticationStateProvider
     private async Task<List<Claim>> GetClaims()
     {
         var token = await _localStorage.GetItemAsync<string>("token");
-        var tokenContent = _jwtSecurityTokenHandler.ReadJwtToken(token);
+        if (string.IsNullOrWhiteSpace(token))
+            return new List<Claim>();
+
+        JwtSecurityToken tokenContent;
+        try
+        {
+            tokenContent = _jwtSecurityTokenHandler.ReadJwtToken(token);
+        }
+        catch
+        {
+            await _localStorage.RemoveItemAsync("token");
+            return new List<Claim>();
+        }
+
         var claims = tokenContent.Claims.ToList();
-        
+        claims.Add(new Claim(ClaimTypes.Name, tokenContent.Subject));
+
         return claims;
     }
 }

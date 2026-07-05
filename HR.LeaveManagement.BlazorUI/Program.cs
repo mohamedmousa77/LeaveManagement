@@ -22,7 +22,9 @@ builder.Services.AddHttpClient<IClient, Client>
 
 builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddAuthorizationCore();
-builder.Services.AddScoped<AuthenticationStateProvider, ApiAuthenticationProvider>();
+// Register the concrete provider so it can be injected by its concrete type
+builder.Services.AddScoped<ApiAuthenticationProvider>();
+builder.Services.AddScoped<AuthenticationStateProvider>(sp => sp.GetRequiredService<ApiAuthenticationProvider>());
 
 builder.Services.AddScoped<ILeaveTypeService, LeaveTypeService>();
 builder.Services.AddScoped<ILeaveRequestService, LeaveRequestService>();

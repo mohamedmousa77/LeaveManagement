@@ -9,7 +9,7 @@ public class UserConfigurations : IEntityTypeConfiguration<ApplicationUser>
 {
     public void Configure(EntityTypeBuilder<ApplicationUser> builder)
     {
-        var hasher = new PasswordHasher<ApplicationUser>();
+        // Use fixed password hashes to keep deterministic model for EF Core migrations.
         builder.HasData(
             new ApplicationUser
             {
@@ -20,7 +20,9 @@ public class UserConfigurations : IEntityTypeConfiguration<ApplicationUser>
                 LastName = "Admin",
                 UserName = "admin@localhost.com",
                 NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                PasswordHash = hasher.HashPassword(null, "P@ssword1"),
+                PasswordHash = "1@Password",
+                ConcurrencyStamp = "a8250fc0-f888-44dd-961d-f12006fc569d",
+                SecurityStamp = "d533e2e3-8cd8-41e1-aa7c-b46a792ab6b2",
                 EmailConfirmed = true,
             },
             new ApplicationUser
@@ -32,7 +34,9 @@ public class UserConfigurations : IEntityTypeConfiguration<ApplicationUser>
                 LastName = "User",
                 UserName = "user@localhost.com",
                 NormalizedUserName = "USER@LOCALHOST.COM",
-                PasswordHash = hasher.HashPassword(null, "P@ssword1"),
+                PasswordHash = "1@Password",
+                ConcurrencyStamp = "f2bdc758-cc20-4533-a9b0-8af7b99786c0",
+                SecurityStamp = "6a63d974-3d39-4429-9d3c-36bf4a3a001e",
                 EmailConfirmed = true,
             }
         );
