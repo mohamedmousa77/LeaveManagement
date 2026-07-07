@@ -37,7 +37,11 @@ public class LeaveAllocationsController : ControllerBase
 
 
     [HttpPost]
-    public async Task<ActionResult<CreateLeaveAllocationCommand>> CreateLeaveAllocation(CreateLeaveAllocationCommand leaveAllocation)
+    [ProducesResponseType(200)]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<CreateLeaveAllocationCommand>> CreateLeaveAllocation
+        (CreateLeaveAllocationCommand leaveAllocation)
     {
         var response = await _mediator.Send(leaveAllocation);
         return  CreatedAtAction(nameof(Get), new { id = response }, response);
@@ -45,6 +49,10 @@ public class LeaveAllocationsController : ControllerBase
 
 
     [HttpPut]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesDefaultResponseType]
     public async Task<ActionResult<UpdateLeaveAllocationCommand>> UpdateLeaveAllocation (UpdateLeaveAllocationCommand leaveAllocation)
     {
         await _mediator.Send(leaveAllocation);

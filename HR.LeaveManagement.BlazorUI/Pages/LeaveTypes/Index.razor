@@ -6,14 +6,14 @@
     <button @onclick="CreateLeaveType" class="btn btn-success">Add Leave Type</button>
 </div>
 
-@if (!string.IsNullOrEmpty(Message))
+@if (string.IsNullOrEmpty(Message) == false)
 {
     <div class="alert alert-danger">
         @Message
     </div>
 }
 
-
+<div clas></div>
 @if (LeaveTypes == null)
 {
     <p>Loading Data...</p>
@@ -23,9 +23,15 @@ else
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Default Days</th>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Default Days
+                </th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -51,4 +57,5 @@ else
             }
         </tbody>
     </table>
+
 }

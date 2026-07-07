@@ -6,11 +6,11 @@ namespace HR.LeaveManagement.Application.Features.LeaveAllocations.Commands.Crea
 
 public class CreateLeaveAllocationCommandValidator : AbstractValidator<CreateLeaveAllocationCommand>
 {
-    private readonly ILeaveAllocationRepository _leaveAllocationRepository;
+    private readonly ILeaveTypeRepository _leaveTypeRepository;
 
-    public CreateLeaveAllocationCommandValidator(ILeaveAllocationRepository leaveAllocationRepository)
+    public CreateLeaveAllocationCommandValidator(ILeaveTypeRepository leaveTypeRepository)
     {
-        this._leaveAllocationRepository = leaveAllocationRepository;
+        this._leaveTypeRepository = leaveTypeRepository;
 
         RuleFor(l => l.LeaveTypeId)
             .GreaterThan(0).WithMessage("{PropertyName} must be greater than 0")
@@ -19,7 +19,7 @@ public class CreateLeaveAllocationCommandValidator : AbstractValidator<CreateLea
 
     private async Task<bool> LeaveTypeMustExist(int id, CancellationToken token)
     {
-        var leaveType = await _leaveAllocationRepository.GetByIdAsync(id);
+        var leaveType = await _leaveTypeRepository.GetByIdAsync(id);
         return leaveType != null;
     }
 }
