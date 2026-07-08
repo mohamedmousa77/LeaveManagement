@@ -1,5 +1,6 @@
 using AutoMapper;
 using HR.LeaveManagement.Application.Contracts.Email;
+using HR.LeaveManagement.Application.Contracts.Identity;
 using HR.LeaveManagement.Application.Contracts.Logging;
 using HR.LeaveManagement.Application.Contracts.Persistence;
 using HR.LeaveManagement.Application.Exceptions;
@@ -15,6 +16,8 @@ public class CreateLeaveRequestCommandHandler : IRequestHandler<CreateLeaveReque
     private readonly IMapper _mapper;
     private readonly ILeaveRequestRepository _leaveRequestRepository;
     private readonly ILeaveTypeRepository _leaveTypeRepository;
+    private readonly ILeaveAllocationRepository _leaveAllocationRepository;
+    private readonly IUserService _userService;
     private readonly IAppLogger<CreateLeaveRequestCommandHandler> _logger;
 
     public CreateLeaveRequestCommandHandler(
@@ -22,12 +25,16 @@ public class CreateLeaveRequestCommandHandler : IRequestHandler<CreateLeaveReque
         IMapper mapper, 
         ILeaveRequestRepository leaveRequestRepository,
         ILeaveTypeRepository leaveTypeRepository,
+        ILeaveAllocationRepository leaveAllocationRepository,
+        IUserService userService,
         IAppLogger<CreateLeaveRequestCommandHandler> logger)
     {
         this._emailSender = emailSender;
         _mapper = mapper;
         _leaveRequestRepository = leaveRequestRepository;
         _leaveTypeRepository = leaveTypeRepository;
+        this._leaveAllocationRepository = leaveAllocationRepository;
+        this._userService = userService;
         _logger = logger;
     }
 
@@ -42,21 +49,44 @@ public class CreateLeaveRequestCommandHandler : IRequestHandler<CreateLeaveReque
             throw new BadRequestException("Invalid leave request", validationResult);
         }
 
-        var leaveRequest = _mapper.Map<Domain.LeaveRequest>(request);
+        // Get the employee id from the user service.
+        var employeeId = _userService.UserId;
 
+        // Check if the employee has enough leave allocated.
+        var allocation = await _leaveAllocationRepository.GetAllUserAllocations(employeeId, request.LeaveTypeId);
+
+        // if allocations are not enough, throw an exception.
+        if (allocation == null)
+        {
+            validationResult.Errors.Add(new FluentValidation.Results.ValidationFailure(nameof(request.LeaveTypeId), 
+                "You do not have sufficient leave for this request."));
+
+            throw new BadRequestException("You do not have sufficient leave for this request.");
+        }
+
+        var daysRequested = (int)(request.EndDate - request.StartDate).TotalDays;
+        if (daysRequested > allocation.NumberOfDays)
+        {
+            validationResult.Errors.Add(new FluentValidation.Results.ValidationFailure(nameof(request.EndDate),
+                "You do not have sufficient leave for this request."));
+            throw new BadRequestException("You do not have sufficient leave for this request.");
+        }
+
+        // Create leave reqeust
+        var leaveRequest = _mapper.Map<Domain.LeaveRequest>(request);
+        leaveRequest.RequestingEmployeeId = employeeId;
         await _leaveRequestRepository.CreateAsync(leaveRequest);
         
         // Send confirmation email.
         try
-        {
-           
-        var email = new EmailMessage
-        {
-            To = "mohamedellithy765@gmail.com",
-            Body = $"You leave request for {request.StartDate:D} to {request.EndDate} has been created successfully",
-            Subject = "Leave request confirmation"
-        };
-            await _emailSender.SendEmailAsync(email);
+        {           
+            var email = new EmailMessage
+            {
+                To = "mohamedellithy765@gmail.com",
+                Body = $"You leave request for {request.StartDate:D} to {request.EndDate} has been created successfully",
+                Subject = "Leave request confirmation"
+            };
+                await _emailSender.SendEmailAsync(email);
 
         }catch (Exception ex)        
         {
