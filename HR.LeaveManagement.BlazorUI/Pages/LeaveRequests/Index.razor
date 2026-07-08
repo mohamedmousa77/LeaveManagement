@@ -82,10 +82,10 @@
                     @item.Employee.Firstname @item.Employee.Lastname
                 </td>
                 <td>
-                    @item.StartDate.Value.ToString("yyyy-MM-dd")
+                    @item.StartDate!.Value.ToString("yyyy-MM-dd")
                 </td>
                 <td>
-                    @item.EndDate.Value.ToString("yyyy-MM-dd")
+                    @item.EndDate!.Value.ToString("yyyy-MM-dd")
                 </td>
                 <td>
                     @item.LeaveType.Name
@@ -112,14 +112,30 @@
                     }
                 </td>
                 <td>
+                    @if (item.Cancelled)
+                    {
+                        <span class="badge bg-secondary">Cancelled</span>
+                    }
+                    else if (item.Approved == true)
+                    {
+                        <span class="badge bg-success">Approved</span>
+                    }
+                    else if (item.Approved == false)
+                    {
+                        <span class="badge bg-danger">Rejected</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-warning">Pending</span>
+                    }
+                </td>
+                <td>
                     @if (!item.Cancelled)
                     {
                         <button class="btn btn-outline-primary" @onclick="(() => GoToDetails(item.Id))">
                             <i class="fa fa-file"></i>Review
                         </button>
                     }
-
-
                 </td>
             </tr>
         }

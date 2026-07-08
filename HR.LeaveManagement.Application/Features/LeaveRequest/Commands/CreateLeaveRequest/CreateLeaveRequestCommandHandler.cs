@@ -75,6 +75,7 @@ public class CreateLeaveRequestCommandHandler : IRequestHandler<CreateLeaveReque
         // Create leave reqeust
         var leaveRequest = _mapper.Map<Domain.LeaveRequest>(request);
         leaveRequest.RequestingEmployeeId = employeeId;
+        leaveRequest.DateRequested = DateTime.Now;
         await _leaveRequestRepository.CreateAsync(leaveRequest);
         
         // Send confirmation email.

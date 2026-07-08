@@ -20,9 +20,13 @@ namespace HR.LeaveManagement.BlazorUI.MappingProfiles
                 .ForMember(q => q.StartDate, opt => opt.MapFrom(x => x.StartDate.DateTime))
                 .ForMember(q => q.EndDate, opt => opt.MapFrom(x => x.EndDate.DateTime))
                 .ReverseMap();
-            //CreateMap<LeaveRequestDetailsDTO, LeaveRequestVM>()
-            //    .ForMember(q => q.DateRequested, opt => opt.MapFrom(x => x.DateRequested.DateTime)).ForMember(q => q.StartDate, opt => opt.MapFrom(x => x.StartDate.DateTime)).ForMember(q => q.EndDate, opt => opt.MapFrom(x => x.EndDate.DateTime))
-            //    .ReverseMap();
+
+            CreateMap<LeaveRequestDetailDTO, LeaveRequestVM>()
+                .ForMember(q => q.DateRequested, opt => opt.MapFrom(x => x.DateRequested.DateTime))
+                .ForMember(q => q.StartDate, opt => opt.MapFrom(x => x.StartDate.DateTime))
+                .ForMember(q => q.EndDate, opt => opt.MapFrom(x => x.EndDate.DateTime))
+                .ReverseMap();
+
             CreateMap<CreateLeaveRequestCommand, LeaveRequestVM>().ReverseMap();
             CreateMap<UpdateLeaveRequestCommand, LeaveRequestVM>().ReverseMap();
 

@@ -12,7 +12,7 @@ namespace HR.LeaveManagement.BlazorUI.Pages.LeaveRequests
 
         protected async override Task OnInitializedAsync()
         {
-            //Model = await leaveRequestService.GetAdminLeaveRequestList();
+            Model = await leaveRequestService.GetAdminLeaveRequestList();
         }
 
         void GoToDetails(int id)

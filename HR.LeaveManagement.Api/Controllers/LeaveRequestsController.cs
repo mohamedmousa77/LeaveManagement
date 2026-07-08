@@ -8,7 +8,6 @@ using HR.LeaveManagement.Application.Features.LeaveRequest.Queries.GetLeaveReque
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Query;
 
 namespace HR.LeaveManagement.Api.Controllers;
 
@@ -25,7 +24,7 @@ public class LeaveRequestsController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<List<LeaveRequestListDTO>> Get()
+    public async Task<ActionResult<List<LeaveRequestListDTO>>> Get()
     {
         var leaveRequests = await _mediator.Send(new GetLeaveRequestListQuery());
         return leaveRequests;
@@ -69,18 +68,19 @@ public class LeaveRequestsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesDefaultResponseType]
-    public async Task<ActionResult> CancelLeaveRequest(CancelLeaveRequestCommand leaveRequest) 
+    public async Task<ActionResult> CancelLeaveRequest(CancelLeaveRequestCommand leaveRequest)
     {
         await _mediator.Send(leaveRequest);
         return NoContent();
     }
-    
+
     [HttpPut]
     [Route("UpdateApproval")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesDefaultResponseType]
-    public async Task<ActionResult> ChangeLeaveRequest(ChangeLeaveRequestApprovalCommand leaveRequestApproval) {
+    public async Task<ActionResult> ChangeLeaveRequest(ChangeLeaveRequestApprovalCommand leaveRequestApproval)
+    {
         await _mediator.Send(leaveRequestApproval);
         return NoContent();
     }
