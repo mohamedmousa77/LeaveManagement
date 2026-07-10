@@ -16,15 +16,15 @@ namespace HR.LeaveManagement.BlazorUI.MappingProfiles
             CreateMap<LeaveTypeDetailsDTO, LeaveTypeVM>().ReverseMap();
 
             CreateMap<LeaveRequestListDTO, LeaveRequestVM>()
-                .ForMember(q => q.DateRequested, opt => opt.MapFrom(x => x.DateRequested.DateTime))
-                .ForMember(q => q.StartDate, opt => opt.MapFrom(x => x.StartDate.DateTime))
-                .ForMember(q => q.EndDate, opt => opt.MapFrom(x => x.EndDate.DateTime))
+                //.ForMember(q => q.DateRequested, opt => opt.MapFrom(x => x.DateRequested.DateTime))
+                //.ForMember(q => q.StartDate, opt => opt.MapFrom(x => x.StartDate.DateTime))
+                //.ForMember(q => q.EndDate, opt => opt.MapFrom(x => x.EndDate.DateTime))
                 .ReverseMap();
 
             CreateMap<LeaveRequestDetailDTO, LeaveRequestVM>()
-                .ForMember(q => q.DateRequested, opt => opt.MapFrom(x => x.DateRequested.DateTime))
-                .ForMember(q => q.StartDate, opt => opt.MapFrom(x => x.StartDate.DateTime))
-                .ForMember(q => q.EndDate, opt => opt.MapFrom(x => x.EndDate.DateTime))
+                //.ForMember(q => q.DateRequested, opt => opt.MapFrom(x => x.DateRequested.DateTime))
+                //.ForMember(q => q.StartDate, opt => opt.MapFrom(x => x.StartDate.DateTime))
+                //.ForMember(q => q.EndDate, opt => opt.MapFrom(x => x.EndDate.DateTime))
                 .ReverseMap();
 
             CreateMap<CreateLeaveRequestCommand, LeaveRequestVM>().ReverseMap();
@@ -35,7 +35,12 @@ namespace HR.LeaveManagement.BlazorUI.MappingProfiles
             CreateMap<CreateLeaveAllocationCommand, LeaveAllocationVM>().ReverseMap();
             CreateMap<UpdateLeaveAllocationCommand, LeaveAllocationVM>().ReverseMap();
 
-            //CreateMap<EmployeeVM, Employee>().ReverseMap();
+            CreateMap<Employee, EmployeeVM>()
+                .ForMember(d => d.Firstname, opt => opt.MapFrom(s => s.FirstName))
+                .ForMember(d => d.Lastname, opt => opt.MapFrom(s => s.LastName))
+                .ReverseMap()
+                .ForMember(d => d.FirstName, opt => opt.MapFrom(s => s.Firstname))
+                .ForMember(d => d.LastName, opt => opt.MapFrom(s => s.Lastname));
         }
     }
 }

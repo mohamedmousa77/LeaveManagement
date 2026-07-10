@@ -2066,10 +2066,10 @@ namespace HR.LeaveManagement.BlazorUI.Services.Base
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("startDate")]
-        public System.DateTimeOffset StartDate { get; set; }
+        public System.DateTime StartDate { get; set; }
 
         [System.Text.Json.Serialization.JsonPropertyName("endDate")]
-        public System.DateTimeOffset EndDate { get; set; }
+        public System.DateTime EndDate { get; set; }
 
         [System.Text.Json.Serialization.JsonPropertyName("leaveTypeId")]
         public int LeaveTypeId { get; set; }
@@ -2180,16 +2180,16 @@ namespace HR.LeaveManagement.BlazorUI.Services.Base
         public LeaveTypeDTO LeaveType { get; set; }
 
         [System.Text.Json.Serialization.JsonPropertyName("dateRequested")]
-        public System.DateTimeOffset DateRequested { get; set; }
+        public System.DateTime DateRequested { get; set; }
 
         [System.Text.Json.Serialization.JsonPropertyName("startDate")]
-        public System.DateTimeOffset StartDate { get; set; }
+        public System.DateTime StartDate { get; set; }
 
         [System.Text.Json.Serialization.JsonPropertyName("endDate")]
-        public System.DateTimeOffset EndDate { get; set; }
+        public System.DateTime EndDate { get; set; }
 
         [System.Text.Json.Serialization.JsonPropertyName("dateActioned")]
-        public System.DateTimeOffset? DateActioned { get; set; }
+        public System.DateTime? DateActioned { get; set; }
 
         [System.Text.Json.Serialization.JsonPropertyName("requestComments")]
         public string RequestComments { get; set; }
@@ -2222,13 +2222,13 @@ namespace HR.LeaveManagement.BlazorUI.Services.Base
         public LeaveTypeDTO LeaveType { get; set; }
 
         [System.Text.Json.Serialization.JsonPropertyName("dateRequested")]
-        public System.DateTimeOffset DateRequested { get; set; }
+        public System.DateTime DateRequested { get; set; }
 
         [System.Text.Json.Serialization.JsonPropertyName("startDate")]
-        public System.DateTimeOffset StartDate { get; set; }
+        public System.DateTime StartDate { get; set; }
 
         [System.Text.Json.Serialization.JsonPropertyName("endDate")]
-        public System.DateTimeOffset EndDate { get; set; }
+        public System.DateTime EndDate { get; set; }
 
         [System.Text.Json.Serialization.JsonPropertyName("approved")]
         public bool? Approved { get; set; }
@@ -2264,10 +2264,10 @@ namespace HR.LeaveManagement.BlazorUI.Services.Base
         public int DefaultDays { get; set; }
 
         [System.Text.Json.Serialization.JsonPropertyName("createdAt")]
-        public System.DateTimeOffset? CreatedAt { get; set; }
+        public System.DateTime? CreatedAt { get; set; }
 
         [System.Text.Json.Serialization.JsonPropertyName("modifiedAt")]
-        public System.DateTimeOffset? ModifiedAt { get; set; }
+        public System.DateTime? ModifiedAt { get; set; }
 
     }
 
@@ -2359,10 +2359,10 @@ namespace HR.LeaveManagement.BlazorUI.Services.Base
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("startDate")]
-        public System.DateTimeOffset StartDate { get; set; }
+        public System.DateTime StartDate { get; set; }
 
         [System.Text.Json.Serialization.JsonPropertyName("endDate")]
-        public System.DateTimeOffset EndDate { get; set; }
+        public System.DateTime EndDate { get; set; }
 
         [System.Text.Json.Serialization.JsonPropertyName("leaveTypeId")]
         public int LeaveTypeId { get; set; }
