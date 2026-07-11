@@ -27,3 +27,50 @@
 2026-07-11 07:38:36.919 +02:00 [INF] HTTP OPTIONS /api/LeaveRequests responded 204 in 0.3082 ms
 2026-07-11 07:38:37.236 +02:00 [INF] Leave requests were retrieved successfully
 2026-07-11 07:38:37.302 +02:00 [INF] HTTP GET /api/LeaveRequests responded 200 in 374.5241 ms
+2026-07-11 08:17:35.542 +02:00 [INF] Now listening on: https://localhost:7241
+2026-07-11 08:17:35.600 +02:00 [INF] Now listening on: http://localhost:5213
+2026-07-11 08:17:35.671 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-11 08:17:35.674 +02:00 [INF] Hosting environment: Development
+2026-07-11 08:17:35.676 +02:00 [INF] Content root path: C:\Users\moham\source\repos\LeaveManagement\HR.LeaveManagement.Api
+2026-07-11 08:18:13.415 +02:00 [INF] Now listening on: https://localhost:7241
+2026-07-11 08:18:13.519 +02:00 [INF] Now listening on: http://localhost:5213
+2026-07-11 08:18:13.664 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-11 08:18:13.667 +02:00 [INF] Hosting environment: Development
+2026-07-11 08:18:13.670 +02:00 [INF] Content root path: C:\Users\moham\source\repos\LeaveManagement\HR.LeaveManagement.Api
+2026-07-11 08:18:32.632 +02:00 [INF] HTTP OPTIONS /api/LeaveTypes responded 204 in 4.8552 ms
+2026-07-11 08:18:32.905 +02:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-07-11 08:18:33.121 +02:00 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-07-11 08:18:35.912 +02:00 [INF] Leave type were retrieved successfully
+2026-07-11 08:18:35.943 +02:00 [INF] HTTP GET /api/LeaveTypes responded 200 in 3295.0858 ms
+2026-07-11 08:18:48.733 +02:00 [INF] HTTP OPTIONS /api/LeaveTypes responded 204 in 1.0412 ms
+2026-07-11 08:18:49.774 +02:00 [INF] HTTP POST /api/LeaveTypes responded 201 in 1034.6979 ms
+2026-07-11 08:18:49.974 +02:00 [INF] Leave type were retrieved successfully
+2026-07-11 08:18:49.977 +02:00 [INF] HTTP GET /api/LeaveTypes responded 200 in 79.2555 ms
+2026-07-11 08:19:02.818 +02:00 [INF] HTTP OPTIONS /api/LeaveTypes/3 responded 204 in 0.1235 ms
+2026-07-11 08:19:02.998 +02:00 [INF] HTTP DELETE /api/LeaveTypes/3 responded 204 in 174.0225 ms
+2026-07-11 08:19:03.018 +02:00 [INF] HTTP OPTIONS /api/LeaveTypes responded 204 in 0.1897 ms
+2026-07-11 08:19:03.059 +02:00 [INF] Leave type were retrieved successfully
+2026-07-11 08:19:03.061 +02:00 [INF] HTTP GET /api/LeaveTypes responded 200 in 36.3269 ms
+2026-07-11 08:20:29.929 +02:00 [INF] Now listening on: https://localhost:7241
+2026-07-11 08:20:30.016 +02:00 [INF] Now listening on: http://localhost:5213
+2026-07-11 08:20:30.119 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-11 08:20:30.121 +02:00 [INF] Hosting environment: Development
+2026-07-11 08:20:30.123 +02:00 [INF] Content root path: C:\Users\moham\source\repos\LeaveManagement\HR.LeaveManagement.Api
+2026-07-11 08:20:42.758 +02:00 [INF] HTTP OPTIONS /api/LeaveRequests responded 204 in 6.2687 ms
+2026-07-11 08:20:42.937 +02:00 [INF] HTTP OPTIONS /api/LeaveTypes responded 204 in 0.7477 ms
+2026-07-11 08:20:43.005 +02:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-07-11 08:20:43.005 +02:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-07-11 08:20:43.267 +02:00 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-07-11 08:20:45.639 +02:00 [INF] Leave type were retrieved successfully
+2026-07-11 08:20:45.662 +02:00 [INF] HTTP GET /api/LeaveTypes responded 200 in 2718.3417 ms
+2026-07-11 08:20:46.477 +02:00 [INF] Leave requests were retrieved successfully
+2026-07-11 08:20:46.503 +02:00 [INF] HTTP GET /api/LeaveRequests responded 200 in 3728.2566 ms
+2026-07-11 08:20:54.763 +02:00 [INF] HTTP OPTIONS /api/LeaveTypes responded 204 in 0.3221 ms
+2026-07-11 08:20:55.415 +02:00 [INF] HTTP POST /api/LeaveTypes responded 201 in 645.0190 ms
+2026-07-11 08:20:55.568 +02:00 [INF] Leave type were retrieved successfully
+2026-07-11 08:20:55.571 +02:00 [INF] HTTP GET /api/LeaveTypes responded 200 in 20.1883 ms
+2026-07-11 08:21:00.341 +02:00 [INF] HTTP OPTIONS /api/LeaveTypes/4 responded 204 in 0.1300 ms
+2026-07-11 08:21:00.456 +02:00 [INF] HTTP DELETE /api/LeaveTypes/4 responded 204 in 109.0270 ms
+2026-07-11 08:21:00.474 +02:00 [INF] HTTP OPTIONS /api/LeaveTypes responded 204 in 0.1175 ms
+2026-07-11 08:21:00.507 +02:00 [INF] Leave type were retrieved successfully
+2026-07-11 08:21:00.510 +02:00 [INF] HTTP GET /api/LeaveTypes responded 200 in 27.1985 ms

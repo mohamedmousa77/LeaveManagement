@@ -19,15 +19,6 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
 builder.Services.AddTransient<JwtAuthorizationMessageHandler>();
-
-//builder.Services.AddHttpClient<IClient, Client>
-//    (client => client.BaseAddress = new Uri("https://localhost:7241"))
-//    .AddHttpMessageHandler<JwtAuthorizationMessageHandler>();
-
-
-// Register the generated API client with a factory so we can enable ReadResponseAsString
-// (helps surface raw server responses when deserialization fails) and keep the JWT
-// authorization handler in the pipeline.
 builder.Services.AddScoped<IClient>(sp =>
 {
     var jwtHandler = sp.GetRequiredService<JwtAuthorizationMessageHandler>();
@@ -46,12 +37,13 @@ builder.Services.AddScoped<IClient>(sp =>
     return client;
 });
 
+builder.Services.AddBlazoredToast();
 builder.Services.AddBlazoredLocalStorage();
+
 builder.Services.AddAuthorizationCore();
-// Register the concrete provider so it can be injected by its concrete type
 builder.Services.AddScoped<ApiAuthenticationProvider>();
 builder.Services.AddScoped<AuthenticationStateProvider>(sp => sp.GetRequiredService<ApiAuthenticationProvider>());
-builder.Services.AddBlazoredToast();
+
 builder.Services.AddScoped<ILeaveTypeService, LeaveTypeService>();
 builder.Services.AddScoped<ILeaveRequestService, LeaveRequestService>();
 builder.Services.AddScoped<ILeaveAllocationService, LeaveAllocationService>();
