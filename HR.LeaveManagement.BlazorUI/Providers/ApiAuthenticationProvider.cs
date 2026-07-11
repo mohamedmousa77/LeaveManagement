@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Components.Authorization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Security.Cryptography.X509Certificates;
 
 namespace HR.LeaveManagement.BlazorUI.Providers;
 
@@ -18,14 +17,14 @@ public class ApiAuthenticationProvider : AuthenticationStateProvider
         _jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
     }
 
-    
+
 
     public override async Task<AuthenticationState> GetAuthenticationStateAsync()
     {
         var Identity = new ClaimsIdentity();
         var user = new ClaimsPrincipal(Identity);
         var isTokenPrisent = await _localStorage.ContainKeyAsync("token");
-        if(isTokenPrisent == false)
+        if (isTokenPrisent == false)
         {
             return new AuthenticationState(user);
         }

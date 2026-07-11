@@ -11,15 +11,18 @@ namespace HR.LeaveManagement.Application.Features.LeaveRequest.Commands.CancelLe
     {
         private readonly IMapper _mapper;
         private readonly ILeaveRequestRepository _leaveRequestRepository;
+        private readonly ILeaveAllocationRepository _leaveAllocationRepository;
         private readonly IEmailSender _emailSender;
 
         public CancelLeaveRequestCommandHandler(
             IMapper mapper, 
             ILeaveRequestRepository leaveRequestRepository,
+            ILeaveAllocationRepository leaveAllocationRepository,
             IEmailSender emailSender)
         {
             this._mapper = mapper;
             this._leaveRequestRepository = leaveRequestRepository;
+            this._leaveAllocationRepository = leaveAllocationRepository;
             this._emailSender = emailSender;
         }
 
@@ -31,7 +34,17 @@ namespace HR.LeaveManagement.Application.Features.LeaveRequest.Commands.CancelLe
                 throw new NotFoundException(nameof(leaveRequest), request.Id);
 
             leaveRequest.Cancelled = true;
-            
+            await _leaveRequestRepository.UpdateAsync(leaveRequest);
+
+            if(leaveRequest.Approved == true)
+            {
+                int daysRequested = (int)(leaveRequest.EndDate - leaveRequest.StartDate).TotalDays;
+                var allocations = await _leaveAllocationRepository.GetAllUserAllocations
+                    (leaveRequest.RequestingEmployeeId, leaveRequest.LeaveTypeId);
+                allocations.NumberOfDays -= daysRequested;
+
+                await _leaveAllocationRepository.UpdateAsync(allocations);
+            }
 
             // Send cancellation email
             try
