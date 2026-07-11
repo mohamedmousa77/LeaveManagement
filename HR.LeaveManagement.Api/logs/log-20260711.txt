@@ -1,0 +1,29 @@
+2026-07-11 07:37:11.348 +02:00 [INF] Now listening on: https://localhost:7241
+2026-07-11 07:37:11.427 +02:00 [INF] Now listening on: http://localhost:5213
+2026-07-11 07:37:11.540 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-11 07:37:11.542 +02:00 [INF] Hosting environment: Development
+2026-07-11 07:37:11.543 +02:00 [INF] Content root path: C:\Users\moham\source\repos\LeaveManagement\HR.LeaveManagement.Api
+2026-07-11 07:37:42.236 +02:00 [INF] HTTP OPTIONS /api/Auth/login responded 204 in 6.3524 ms
+2026-07-11 07:37:46.385 +02:00 [INF] HTTP POST /api/Auth/login responded 200 in 4129.4311 ms
+2026-07-11 07:37:48.535 +02:00 [INF] HTTP OPTIONS /api/LeaveTypes responded 204 in 0.7195 ms
+2026-07-11 07:37:48.712 +02:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-07-11 07:37:48.907 +02:00 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-07-11 07:37:49.226 +02:00 [INF] Leave type were retrieved successfully
+2026-07-11 07:37:49.231 +02:00 [INF] HTTP GET /api/LeaveTypes responded 200 in 681.2322 ms
+2026-07-11 07:38:00.877 +02:00 [INF] HTTP OPTIONS /api/LeaveTypes responded 204 in 0.3331 ms
+2026-07-11 07:38:01.713 +02:00 [INF] HTTP POST /api/LeaveTypes responded 201 in 829.2972 ms
+2026-07-11 07:38:01.802 +02:00 [INF] Leave type were retrieved successfully
+2026-07-11 07:38:01.806 +02:00 [INF] HTTP GET /api/LeaveTypes responded 200 in 67.0962 ms
+2026-07-11 07:38:04.121 +02:00 [INF] HTTP OPTIONS /api/LeaveTypes/1 responded 204 in 0.1240 ms
+2026-07-11 07:38:04.196 +02:00 [INF] HTTP GET /api/LeaveTypes/1 responded 200 in 68.0013 ms
+2026-07-11 07:38:05.800 +02:00 [INF] Leave type were retrieved successfully
+2026-07-11 07:38:05.803 +02:00 [INF] HTTP GET /api/LeaveTypes responded 200 in 13.7461 ms
+2026-07-11 07:38:06.908 +02:00 [INF] HTTP GET /api/LeaveTypes/1 responded 200 in 15.0505 ms
+2026-07-11 07:38:08.061 +02:00 [INF] HTTP OPTIONS /api/LeaveTypes responded 204 in 0.3239 ms
+2026-07-11 07:38:08.073 +02:00 [INF] Leave type were retrieved successfully
+2026-07-11 07:38:08.075 +02:00 [INF] HTTP GET /api/LeaveTypes responded 200 in 7.8862 ms
+2026-07-11 07:38:10.126 +02:00 [INF] HTTP OPTIONS /api/LeaveAllocations responded 204 in 0.1194 ms
+2026-07-11 07:38:26.565 +02:00 [INF] HTTP POST /api/LeaveAllocations responded 201 in 16433.1843 ms
+2026-07-11 07:38:36.919 +02:00 [INF] HTTP OPTIONS /api/LeaveRequests responded 204 in 0.3082 ms
+2026-07-11 07:38:37.236 +02:00 [INF] Leave requests were retrieved successfully
+2026-07-11 07:38:37.302 +02:00 [INF] HTTP GET /api/LeaveRequests responded 200 in 374.5241 ms

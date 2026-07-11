@@ -7,10 +7,12 @@ namespace HR.LeaveManagement.Api.Middleware
     public class ExceptionMiddleware
     {
         private readonly RequestDelegate _next;
+        private readonly ILogger<ExceptionMiddleware> _logger;
 
-        public ExceptionMiddleware(RequestDelegate next)
+        public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger)
         {
             this._next = next;
+            _logger = logger;
         }
 
         public async Task Invoke(HttpContext context)
@@ -65,6 +67,8 @@ namespace HR.LeaveManagement.Api.Middleware
             }
 
             context.Response.StatusCode = (int)statusCode;
+            //var problemlogMsg = JsonConvert.SerializeObject(problem);
+            _logger.LogError( problem.ToString());
             await context.Response.WriteAsJsonAsync(problem);
         }
     }
